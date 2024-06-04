@@ -10,7 +10,6 @@ function solution(maps) {
       const ny = y + dy[i];
       if (nx < 0 || ny < 0 || nx >= maps.length || ny >= maps[0].length)
         continue;
-      if (maps[nx][ny] === 0 || (nx === 0 && ny === 0)) continue;
       if (maps[nx][ny] === 1) {
         maps[nx][ny] = maps[x][y] + 1;
         q.push([nx, ny]);
