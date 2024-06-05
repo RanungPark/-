@@ -1,5 +1,5 @@
 const fs = require('fs');
-const input = fs.readFileSync('input.txt').toString().trim().split('\n');
+const input = fs.readFileSync('../input.txt').toString().trim().split('\n');
 
 const n = +input.shift();
 
@@ -9,9 +9,10 @@ const dy = [0, 0, -1, 1];
 let safetys = [];
 let safety = 0;
 
-const bfs = (x, y, h, visited) => {
+const bfs = (x, y, visited) => {
   const q = [];
   q.push([x, y]);
+
   while (q.length) {
     const [x, y] = q.shift();
 
@@ -19,10 +20,11 @@ const bfs = (x, y, h, visited) => {
       visited[x][y] = true;
 
       for (i = 0; i < 4; i++) {
-        const nx = x + dx[i];
-        const ny = y + dy[i];
+        const [nx, ny] = [x + dx[i], y + dy[i]];
         if (nx < 0 || ny < 0 || nx >= n || ny >= n) continue;
-        q.push([nx, ny]);
+        if (!visited[nx][ny]) {
+          q.push([nx, ny]);
+        }
       }
     }
   }
@@ -35,7 +37,7 @@ for (h = 1; h <= 100; h++) {
   for (let i = 0; i < n; i++) {
     for (let j = 0; j < n; j++) {
       if (!visited[i][j]) {
-        bfs(i, j, h, visited);
+        bfs(i, j, visited);
         safety = safety + 1;
       }
     }
