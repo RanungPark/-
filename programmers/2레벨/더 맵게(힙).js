@@ -54,11 +54,11 @@ class MinHeap {
   heapifyDown() {
     let index = 0;
     const length = this.heap.length;
-    const element = this.heap[0];
 
     while (true) {
-      let leftChildIndex = this.getLeftChildIndex(index);
-      let rightChildIndex = this.getRightChildIndex(index);
+      const leftChildIndex = this.getLeftChildIndex(index);
+      const rightChildIndex = this.getRightChildIndex(index);
+      const element = this.heap[index];
       let leftChild, rightChild;
       let swapIndex = null;
 
